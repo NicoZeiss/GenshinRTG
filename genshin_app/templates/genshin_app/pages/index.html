@@ -1,0 +1,48 @@
+{% extends 'genshin_app/layouts/main_layout.html' %}
+
+{% block content %}
+    <form method="GET" action="">
+        <fieldset>
+            <legend>Element</legend>
+            {% for element in elements %}
+                <label>
+                    <input type="checkbox" name="element" value="{{ element.id }}"
+                           {% if element.id|stringformat:"s" in selected_elements %}checked{% endif %}>
+                    {{ element }}
+                </label>
+                <br>
+            {% endfor %}
+        </fieldset>
+        <br>
+        <fieldset>
+            <legend>Weapon</legend>
+            {% for weapon in weapons %}
+                <label>
+                    <input type="checkbox" name="weapon" value="{{ weapon.id }}"
+                           {% if weapon.id|stringformat:"s" in selected_weapons %}checked{% endif %}>
+                    {{ weapon }}
+                </label>
+                <br>
+            {% endfor %}
+        </fieldset>
+        <br>
+        <fieldset>
+            <legend>Rarity</legend>
+            {% for rarity in rarities %}
+                <label>
+                    <input type="checkbox" name="rarity" value="{{ rarity.id }}"
+                           {% if rarity.id|stringformat:"s" in selected_rarities %}checked{% endif %}>
+                    {{ rarity }}
+                </label>
+                <br>
+            {% endfor %}
+        </fieldset>
+        <button type="submit">Filter</button>
+    </form>
+
+    <div>
+        {% for character in characters %}
+            <p>{{ character.details }}</p>
+        {% endfor %}
+    </div>
+{% endblock %}
